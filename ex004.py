@@ -1,0 +1,1 @@
+data = input("Qual a data? ")
