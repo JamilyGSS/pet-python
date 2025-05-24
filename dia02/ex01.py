@@ -1,7 +1,9 @@
-ra = input('Digite seu ra: ')
-email = "ra"+ra+"@uem.br"
-print(email)
-
-c = float(input("Digite a temperatura em Celsius: "))
-f = (c * 9/5) + 32 
-print(f"A temperatura em Farenheit é {f}")
+lista_compras = []
+lista_compras.append('Arroz')
+lista_compras.append('Feijão')
+lista_compras.append('Leite')
+lista_compras.insert(0,'Pão')
+print(lista_compras)
+lista_compras.remove('Feijão')
+lista_compras.pop()
+print(lista_compras)
