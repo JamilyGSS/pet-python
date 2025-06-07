@@ -7,3 +7,11 @@ for nome, notas in notas.items():
         print('Aluno REPROVADO')
     else:
         print('Aluno APROVADO')
+    print()
+
+'''
+União: setC = setA | setB
+Interseção: setD = setA & setB
+Diferença simétrica: Tudo menos a interseção
+setD = setA ^ setB
+'''
