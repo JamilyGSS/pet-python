@@ -1,66 +1,76 @@
 lista_compras = {}
 
-def verificar_res(num: int) -> int:
-    if num != 1 and num != 2 and num != 3 and num != 4 and num != 5:
-        print('Resposta Inválida! Tente novamente!')
-        print()
-    res = 0
-    return res
-
-def adicionar_item(lista1: list) -> list:
+def adicionar_item():
     novo_item = input('Digite o novo item: ')
-    teste = True
-    while teste:
-        if novo_item in lista_compras:
-            print('O item já está na lista! Tente novamente!')
-            novo_item = input('Digite o novo item: ')
-        else:
-            teste = False
-    quant_novo_item: int = int(input(f'Digite a quantidade de {novo_item} desejada: '))
+    if novo_item in lista_compras:
+        lista_compras[novo_item] += int(input(f'O item já existe. Quantidade adicional para {novo_item}: '))
+    else:
+        lista_compras[novo_item] = int(input(f'Digite a quantidade de {novo_item}: '))
     print()
-    lista_compras[novo_item] = quant_novo_item
-    return lista_compras
 
-def remover_item(lista1: list) -> list:
-    item_excluido = input('Digite o item que você quer excluir: ')
-    teste = True
-    while teste:
-        if item_excluido not in lista_compras:
-            print('O item não está na lista! Tente novamente!')
-            item_excluido = input('Digite o item que você quer excluir: ')
+def remover_item():
+    if not lista_compras:
+        print('O carrinho está vazio.\n')
+        return
+    item = input('Digite o item que você quer remover: ')
+    if item in lista_compras:
+        del lista_compras[item]
+        print(f'{item} foi removido.\n')
+    else:
+        print('Item não encontrado no carrinho.\n')
+
+def atualizar_lista():
+    if not lista_compras:
+        print('O carrinho está vazio.\n')
+        return
+    item = input('Digite o item que você deseja atualizar: ')
+    if item in lista_compras:
+        nova_quantidade = int(input(f'Nova quantidade para {item}: '))
+        if nova_quantidade <= 0:
+            del lista_compras[item]
+            print(f'{item} foi removido.')
         else:
-            teste = False
-    print()
-    lista_compras.remove(item_excluido)
-    return lista_compras
+            lista_compras[item] = nova_quantidade
+    else:
+        print('Item não encontrado.\n')
 
-def atualizar_lista(lista1: list) -> list:
-    print(lista_compras)
-    item_atualizado = input('Digite o item que você deseja atualizar a quantidade: ')
-    teste = True
-    while teste:
-        if item_atualizado not in lista_compras:
-            print('O item não está na lista! Tente novamente!')
-            item_atualizado = input('Digite o item que você deseja atualizar a quantidade: ')
-        else:
-            teste = False
-    print()
-    quant_nova = int(input(f'Digite a nova quantidade para {item_atualizado}: '))
-    lista_compras[item_atualizado] = quant_nova
-    return lista_compras
+def mostrar_lista():
+    if not lista_compras:
+        print('Carrinho vazio.\n')
+        return
+    print('\nItens no carrinho:')
+    total_itens = 0
+    for item, qtd in lista_compras.items():
+        print(f'- {item}: {qtd}')
+        total_itens += qtd
+    print(f'Total de itens no carrinho: {total_itens}')
 
-def mostrar_lista(lista1: list) -> list:
-    print(lista1)
+def limpar_carrinho():
+    lista_compras.clear()
+    print('Carrinho esvaziado!')
 
-res = 0
-while res != 5:
-    res = int(input('O que você quer fazer? \n[1] Adicionar Novo Item \n[2] Remover um Item \n[3] Atualizar a Quantidade de um Item \n[4] Visualizar a lista \n[5] Sair do Programa \n'))
-    verificar_res(res)
+while True:
+    print('O que você quer fazer?')
+    print('[1] Adicionar item')
+    print('[2] Remover item')
+    print('[3] Atualizar quantidade')
+    print('[4] Visualizar carrinho')
+    print('[5] Limpar carrinho')
+    print('[6] Sair')
+    
+    res = int(input('Digite sua opção: '))
     if res == 1:
-        adicionar_item(lista_compras)
+        adicionar_item()
     elif res == 2:
-        remover_item(lista_compras)
+        remover_item()
     elif res == 3:
-        atualizar_lista(lista_compras)
+        atualizar_lista()
     elif res == 4:
-        mostrar_lista(lista_compras)
+        mostrar_lista()
+    elif res == 5:
+        limpar_carrinho()
+    elif res == 6:
+        print('Saindo do programa. Até mais!')
+        break
+    else:
+        print('Opção inválida! Tente novamente.\n')
