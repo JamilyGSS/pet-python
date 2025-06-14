@@ -31,7 +31,7 @@ def remover_item(lista1: list) -> list:
         else:
             teste = False
     print()
-    lista_compras[novo_item] = quant_novo_item
+    lista_compras.remove(item_excluido)
     return lista_compras
 
 res = 0
