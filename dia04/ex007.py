@@ -27,12 +27,30 @@ def remover_item(lista1: list) -> list:
     while teste:
         if item_excluido not in lista_compras:
             print('O item não está na lista! Tente novamente!')
-            item_excluido = input('Digite o novo item: ')
+            item_excluido = input('Digite o item que você quer excluir: ')
         else:
             teste = False
     print()
     lista_compras.remove(item_excluido)
     return lista_compras
+
+def atualizar_lista(lista1: list) -> list:
+    print(lista_compras)
+    item_atualizado = input('Digite o item que você deseja atualizar a quantidade: ')
+    teste = True
+    while teste:
+        if item_atualizado not in lista_compras:
+            print('O item não está na lista! Tente novamente!')
+            item_atualizado = input('Digite o item que você deseja atualizar a quantidade: ')
+        else:
+            teste = False
+    print()
+    quant_nova = int(input(f'Digite a nova quantidade para {item_atualizado}: '))
+    lista_compras[item_atualizado] = quant_nova
+    return lista_compras
+
+def mostrar_lista(lista1: list) -> list:
+    print(lista1)
 
 res = 0
 while res != 5:
@@ -42,3 +60,7 @@ while res != 5:
         adicionar_item(lista_compras)
     elif res == 2:
         remover_item(lista_compras)
+    elif res == 3:
+        atualizar_lista(lista_compras)
+    elif res == 4:
+        mostrar_lista(lista_compras)
